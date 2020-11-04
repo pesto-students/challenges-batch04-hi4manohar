@@ -30,6 +30,26 @@ describe('Object Utils', () => {
   		sname: 'hello',
   		c: '12'
   	}
-    expect(invert(invertData, ([key, val]) => [val, key])).toEqual({'hi': 'name', 'hello': 'sname', '12': 'c'});
+    expect(invert(invertData)).toEqual({'hi': 'name', 'hello': 'sname', '12': 'c'});
+  });
+
+  it('Merge Objects', () => {
+
+    const obj = {
+      name: 'hi',
+      sname: 'hello',
+      c: '12'
+    };
+    const obj2 = {
+      name: 'hi',
+      sname: 'hello',
+      c: '12'
+    };
+    const obj3 = {
+      name: 'hi',
+      sname: 'hello',
+      c: '10'
+    }
+    expect(merge(obj, obj2, obj3)).toEqual({'name' : 'hi', sname: 'hello', c: '10'});
   });
 });

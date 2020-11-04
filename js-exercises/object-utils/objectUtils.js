@@ -27,15 +27,24 @@ function invert(obj, fn) {
 
 	let newData = {};
 	for( const [key, val] of Object.entries(obj) ) {
-		let returnedValue = fn([key, val]);
-		newData[returnedValue[1]] = returnedValue[0];
+		newData[val] = key;
 	}
 
 	return newData;
 
 }
 
-function merge() {
+function merge(...args) {
+
+	const newObj = {};
+
+	for( let arg of args ) {
+		for( const [key, val] of Object.entries(arg) ) {
+			newObj[key] = val;
+		}
+	}
+
+	return newObj;
 
 }
 
