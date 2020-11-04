@@ -52,4 +52,20 @@ describe('Object Utils', () => {
     }
     expect(merge(obj, obj2, obj3)).toEqual({'name' : 'hi', sname: 'hello', c: '10'});
   });
+
+  it('Condition for truthness should should return correct', () => {
+
+    const obj = {name: 'hi',sname: 'hello',c: '12'};
+    expect(all(obj, (value) => value.length > 2)).toEqual(false);
+    obj.name = 'Rohit';
+    obj.c = 'Mehra';
+    expect(all(obj, (value) => value.length > 2)).toEqual(true);
+  });
+
+  it('For some method atleast one should be true', () => {
+    const obj = {name: 'hi',sname: 'hello',c: '12'};
+    expect(some(obj, (value) => value.length > 2)).toEqual(true);
+    obj.sname = 'd';
+    expect(some(obj, (value) => value.length > 2)).toEqual(false);
+  });
 });

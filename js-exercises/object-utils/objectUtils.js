@@ -48,12 +48,31 @@ function merge(...args) {
 
 }
 
-function all() {
+function all(obj, fn) {
 
+	let allStatus = true;
+
+	for( const [, val] of Object.entries(obj) ) {
+		if( fn(val) === false ) {
+			allStatus = false;
+		}
+	}
+
+	return allStatus;
 }
 
-function some() {
+function some(obj, fn) {
 
+	let allStatus = false;
+
+	for( const [, val] of Object.entries(obj) ) {
+		if( fn(val) === true ) {
+			allStatus = true;
+		}
+	}
+
+	return allStatus;
+	
 }
 
 export {
