@@ -1,10 +1,11 @@
-class Cycled {
+class Cycled extends Array{
 	constructor(arr) {
+		super(...arr);
 	  this.data = arr;
 	  this.currentIndex = 0;
 	}
   
-	current() {
+	current(x) {
 	  return this.data[this.currentIndex];
 	}
   
@@ -36,11 +37,25 @@ class Cycled {
 	  return this.currentIndex;
 	}
   
-	reversed() {
-	  this.data.reverse();
-	  console.log(this.next.prototype);
-	  return this;
+	get reversed() {
+
+		const ref = this;
+		return function* revGenerator() {
+			while(true) {
+				yield ref.previous();
+			}
+		}
 	}
+
+	*[Symbol.iterator]() {
+		let length = this.data.length - 1;
+	
+		while (length >= 0) {
+		  yield this.current();
+		  this.index = this.currentIndex + 1;
+		  length -= 1;
+		}
+	  }
   
 	indexOf(val) {
 	  return this.data.indexOf(val);
